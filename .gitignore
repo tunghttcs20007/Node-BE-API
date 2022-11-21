@@ -3,3 +3,4 @@ node_modules
 
 #local file
 .env
+.DS_Store
