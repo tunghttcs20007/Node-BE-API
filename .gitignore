@@ -1,0 +1,5 @@
+# dependencies package
+node_modules
+
+#local file
+.env
