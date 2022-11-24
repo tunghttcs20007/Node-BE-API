@@ -9,7 +9,7 @@ const { createCoupon, removeCoupon, getAllCoupons } = require('../controllers/co
 
 /** Routes */
 router.post('/coupon', authVerifyToken, verifyAdminRole, createCoupon);
-router.get('/coupons', getAllCoupons);
+router.get('/coupon/list', getAllCoupons);
 router.delete('/coupon/:couponId', authVerifyToken, verifyAdminRole, removeCoupon);
 
 module.exports = router;

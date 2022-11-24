@@ -16,9 +16,10 @@ const {
 
 /** Routes */
 router.post('/sub-category', authVerifyToken, verifyAdminRole, createSubCategory);
-router.get('/sub-categories', getAllSubCategories);
+// router.get('/sub-categories', getAllSubCategories);
+router.get('/sub-category/list-all', getAllSubCategories);
 router.get('/sub-category/:slug', readSubCategory);
-router.get('/sub-category/products/:id', getProductsBySub);
+router.get('/sub-category/list-product/:id', getProductsBySub);
 router.put('/sub-category/:slug', authVerifyToken, verifyAdminRole, updateSubCategory);
 router.delete('/sub-category/:slug', authVerifyToken, verifyAdminRole, deleteSubCategory);
 

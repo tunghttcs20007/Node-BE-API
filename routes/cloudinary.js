@@ -8,7 +8,7 @@ const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth');
 const {uploadImages, removeImages} = require('../controllers/cloudinary')
 
 /** Routes */
-router.post('/images', authVerifyToken, verifyAdminRole, uploadImages);
-router.post('/images/remove', authVerifyToken, verifyAdminRole, removeImages);
+router.post('/image/upload', authVerifyToken, verifyAdminRole, uploadImages);
+router.post('/image/remove', authVerifyToken, verifyAdminRole, removeImages);
 
 module.exports = router;

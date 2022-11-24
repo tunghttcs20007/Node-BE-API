@@ -8,8 +8,8 @@ const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth');
 const { createOrUpdateUser, getCurrentUser } = require('../controllers/auth');
 
 /** Routes */
-router.post('/create-or-update-user', authVerifyToken, createOrUpdateUser);
-router.post('/current-user', authVerifyToken, getCurrentUser);
-router.post('/current-admin', authVerifyToken, verifyAdminRole, getCurrentUser);
+router.post('/iam/user', authVerifyToken, createOrUpdateUser);
+router.post('/iam/check-user', authVerifyToken, getCurrentUser);
+router.post('/iam/check-admin', authVerifyToken, verifyAdminRole, getCurrentUser);
 
 module.exports = router;

@@ -20,10 +20,10 @@ const {
 
 /** Routes */
 router.post('/product', authVerifyToken, verifyAdminRole, createProduct);
-router.post('/search/filters', searchFilters);
-router.post('/products', getProductsAndSort);
-router.get('/products/total', getPoductsCount);
-router.get('/products', getAllProducts);
+router.post('/product/search', searchFilters);
+router.post('/product/list/sort', getProductsAndSort);
+router.get('/product/count', getPoductsCount);
+router.get('/product/list-all', getAllProducts);
 router.get('/product/:slug', getProduct);
 router.get('/product/related/:productId/:limit', getAllRelated);
 router.put('/product/:slug', authVerifyToken, verifyAdminRole, updateProduct);

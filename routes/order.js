@@ -12,8 +12,8 @@ const {
 } = require('../controllers/order');
 
 /** Routes */
-router.post('/order/create', authVerifyToken, createOnlinePaymentOrder);
-router.post('/order/create/cash-order', authVerifyToken, createCODPaymentOrder);
-router.get('/order/listAll', authVerifyToken, getAllOrders);
+router.post('/order/online', authVerifyToken, createOnlinePaymentOrder);
+router.post('/order/cod', authVerifyToken, createCODPaymentOrder);
+router.get('/order/list-all', authVerifyToken, getAllOrders);
 
 module.exports = router;
