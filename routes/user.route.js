@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /** Import Middlewars Function - Auth Controller */
-const { authVerifyToken } = require('../middlewares/auth');
+const { authVerifyToken } = require('../middlewares/auth.middleware');
 
 /** Import User Controllers - CRUD */
 const {
@@ -14,7 +14,7 @@ const {
 	addProductToWishList,
 	getUserWishList,
 	removeProductFromWishList,
-} = require('../controllers/user');
+} = require('../controllers/user.controller');
 
 router.post('/user/checkout', authVerifyToken, userCheckout);
 router.post('/user/cart', authVerifyToken, userCheckout);

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /** Import Middlewars Function - Auth Controller */
-const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth');
+const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth.middleware');
 
 /** Import Product Controllers - CRUD */
 const {
@@ -16,7 +16,7 @@ const {
 	updateProductRating,
 	getAllRelated,
 	searchFilters,
-} = require('../controllers/product');
+} = require('../controllers/product.controller');
 
 /** Routes */
 router.post('/product', authVerifyToken, verifyAdminRole, createProduct);

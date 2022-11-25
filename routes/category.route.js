@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /** Import Middlewars Function - Auth Controller */
-const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth');
+const { authVerifyToken, verifyAdminRole } = require('../middlewares/auth.middleware');
 
 /** Import Category Controllers - CRUD */
 const {
@@ -13,11 +13,10 @@ const {
 	getAllCategories,
 	getSubsByParent,
 	getProductsByCategory,
-} = require('../controllers/category');
+} = require('../controllers/category.controller');
 
 /** Routes */
 router.post('/category', authVerifyToken, verifyAdminRole, createCategory);
-// router.get('/categories', getAllCategories);
 router.get('/category/list-all', getAllCategories);
 router.get('/category/:slug', readCategory);
 router.get('/category/list-sub/:id', getSubsByParent);

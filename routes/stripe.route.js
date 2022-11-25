@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 /** Import Middlewars Function - Auth Controller */
-const { authVerifyToken } = require('../middlewares/auth');
+const { authVerifyToken } = require('../middlewares/auth.middleware');
 
 /** Import Stripe Controllers - CRUD */
-const { createPaymentIntent } = require('../controllers/stripe');
+const { createPaymentIntent } = require('../controllers/stripe.controller');
 
 router.post('/payment/stripe', authVerifyToken, createPaymentIntent);
 
