@@ -15,8 +15,12 @@ const commentSchema = new mongoose.Schema(
 			type: ObjectId,
 			ref: 'User',
 		},
+		parentComment: {
+			type: ObjectId,
+			ref: 'Comment',
+		},
 		content: {
-			type: string,
+			type: String,
 			require: true,
 		},
 	},
