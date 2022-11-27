@@ -1,7 +1,5 @@
 const User = require('../models/userSchema');
 const Cart = require('../models/cartSchema');
-const Product = require('../models/productSchema');
-const Coupon = require('../models/couponSchema');
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 exports.createPaymentIntent = async (req, res) => {
