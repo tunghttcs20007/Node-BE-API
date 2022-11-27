@@ -1,5 +1,7 @@
 const Comment = require('../models/commentSchema');
 const User = require('../models/userSchema');
+const Like = require('../models/likeSchema');
+const Dislike = require('../models/dislikeSchema');
 
 exports.saveProductCommnet = async (req, res) => {
 	const user = await User.findOne({ email: req.user.email });
@@ -49,5 +51,75 @@ exports.deleteProductComment = async (req, res) => {
 		if (error) {
 			res.status(400).json(error);
 		} else res.status(204).json(result);
+	});
+};
+
+exports.addLikeComment = async (req, res) => {
+	const { commentId } = req.params;
+	const { userId, productId } = req.body;
+
+	new Like({ commentId, userId, productId }).save((error, like) => {
+		if (error) res.json(error).status(400);
+		else {
+			res.json({ success: true, like }).status(201);
+		}
+	});
+};
+
+exports.removeLikeComment = async (req, res) => {
+	const { userId, commentId } = req.params;
+
+	Like.findOneAndRemove({ userId, commentId }, { useFindAndModify: false }).exec(
+		(error, result) => {
+			if (error) res.json(error).status(400);
+			else res.json({ success: true }).status(204);
+		}
+	);
+};
+
+exports.addDislikeComment = async (req, res) => {
+	const { commentId } = req.params;
+	const { userId, productId } = req.body;
+
+	new Dislike({ commentId, userId, productId }).save((error, dislike) => {
+		if (error) res.json(error).status(400);
+		else res.json({ success: true, dislike }).status(201);
+	});
+};
+
+exports.removeDislikeComment = async (req, res) => {
+	const { userId, commentId } = req.params;
+
+	Dislike.findOneAndRemove({ userId, commentId }, { useFindAndModify: false }).exec(
+		(error, result) => {
+			if (error) res.json(error).status(400);
+			else res.json({ success: true }).status(204);
+		}
+	);
+};
+
+exports.getCommentLikeCount = async (req, res) => {
+	const { commentId } = req.params;
+
+	Like.find({ commentId }).exec((error, likes) => {
+		if (error) {
+			res.json(error).status(404);
+		} else {
+			let count = likes.length;
+			res.json({ success: true, count, likes }).status(200);
+		}
+	});
+};
+
+exports.getCommentDislikeCount = async (req, res) => {
+	const { commentId } = req.params;
+
+	Dislike.find({ commentId }).exec((error, dislikes) => {
+		if (error) {
+			res.json(error).status(404);
+		} else {
+			let count = dislikes.length;
+			res.json({ success: true, count, dislikes }).status(200);
+		}
 	});
 };
