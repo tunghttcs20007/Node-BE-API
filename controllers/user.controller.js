@@ -42,12 +42,17 @@ exports.userCheckout = async (req, res) => {
 exports.getUserCart = async (req, res) => {
 	const user = await User.findOne({ email: req.user.email }).exec();
 
-	let cart = await Cart.findOne({ orderedBy: user._id })
+	Cart.findOne({ orderedBy: user._id })
 		.populate('products.product', '_id title price')
-		.exec();
+		.exec((error, cart) => {
+			if (error) res.json({ error }).status(404);
+			if (cart === null) res.status(404).send('cart is empty or not found');
+			else {
+				const { products, cartTotal, totalAfterDiscount } = cart;
+				res.json({ products, cartTotal, totalAfterDiscount }).status(200);
+			}
+		});
 
-	const { products, cartTotal, totalAfterDiscount } = cart;
-	res.json({ products, cartTotal, totalAfterDiscount }).status(200);
 };
 
 exports.emptyCart = async (req, res) => {

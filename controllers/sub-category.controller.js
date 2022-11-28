@@ -84,6 +84,6 @@ exports.getProductsBySub = async (req, res) => {
 		
 		res.json(productsList).status(200);
 	} catch (error) {
-		res.status(404).send(`Can not find products with ${subCategory.name}`);
+		res.status(404).send(`Can not find products with subCategoryId: ${id}`);
 	}
 }
