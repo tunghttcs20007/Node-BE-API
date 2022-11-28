@@ -106,7 +106,7 @@ router.get('/sub-category/list-all', getAllSubCategories);
  *            schema:
  *              $ref: '#/components/schemas/notfound'
  */
-router.get('/sub-category/:id', readSubCategory);
+router.get('/sub-category/:slug', readSubCategory);
 
 /**
  * @swagger
