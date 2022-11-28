@@ -51,12 +51,12 @@ const specs = swaggerDoc(options);
 /** Middlewares */
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '2mb' }));
-app.use('/api/ecom-project/docs', swaggerUI.serve, swaggerUI.setup(specs));
+app.use('/ecom/api/docs', swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());
 
 /** Auto Loading Routes Middlewares */
 readdirSync('./routes').forEach((route) => {
-	app.use('/api/ecom-project', require(`./routes/${route}`));
+	app.use('/ecom/api', require(`./routes/${route}`));
 });
 
 /** Port */

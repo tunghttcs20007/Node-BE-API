@@ -43,7 +43,7 @@ const { createOrUpdateUser, getCurrentUser } = require('../controllers/auth.cont
  * /iam/user:
  *  post:
  *    tags: [Auth]
- *    summary: Login with Email/Password | Create new account with Email/Password
+ *    summary: Verify user session with Firebase through Backend API
  *    parameters:
  *      - in: header
  *        name: accessToken
@@ -78,7 +78,7 @@ router.post('/iam/user', authVerifyToken, createOrUpdateUser);
  * /iam/check-user:
  *  post:
  *    tags: [Auth]
- *    summary: Login with Email/Password | Create new account with Email/Password
+ *    summary: Verify is user role
  *    parameters:
  *      - in: header
  *        name: accessToken
@@ -113,7 +113,7 @@ router.post('/iam/check-user', authVerifyToken, getCurrentUser);
  * /iam/check-admin:
  *  post:
  *    tags: [Auth]
- *    summary: Login with Email/Password | Create new account with Email/Password
+ *    summary: Verify is admin role
  *    parameters:
  *      - in: header
  *        name: accessToken
