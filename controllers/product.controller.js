@@ -112,6 +112,10 @@ exports.updateProductRating = async (req, res) => {
 		res.status(200).json(newRating);
 	} else {
 		//Find product and update the rating
+		if (star < existingRating.star) {
+			res.send(`Your rating is lower than ${existingRating.star}`);
+			return;
+		}
 		let updatedRating = await Product.updateOne(
 			{ ratings: { $elemMatch: existingRating } },
 			{ $set: { 'ratings.$.star': star } },
